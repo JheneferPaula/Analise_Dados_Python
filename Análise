@@ -1,0 +1,113 @@
+Análise de Dados
+Carregando dados - Pandas
+import pandas as pd
+dados = pd.read_excel("vendas.xlsx")
+Análise Exploratória
+dados.head(10)
+dados.head(10)
+id_pedido	data	loja	cidade	estado	regiao	tamanho	local_consumo	preco	forma_pagamento	ano_mes
+0	PED1994	2020-01-01	Loja 4	Santos	São Paulo	Sudeste	300ml	Consumo no local	5	Dinheiro	2020-01
+1	PED2246	2020-01-01	Loja 6	Florianópolis	Santa Catarina	Sul	500ml	Consumo no local	11	Débito	2020-01
+2	PED3876	2020-01-01	Loja 3	Rio de Janeiro	Rio de Janeiro	Sudeste	300ml	Delivery	7	Crédito	2020-01
+3	PED4352	2020-01-01	Loja 1	Fortaleza	Ceará	Nordeste	1000ml	Consumo no local	7	Débito	2020-01
+4	PED8633	2020-01-01	Loja 5	São Paulo	São Paulo	Sudeste	200ml	Delivery	9	Crédito	2020-01
+5	PED10668	2020-01-01	Loja 4	Santos	São Paulo	Sudeste	500ml	Delivery	7	Crédito	2020-01
+6	PED11326	2020-01-01	Loja 4	Santos	São Paulo	Sudeste	300ml	Delivery	11	Dinheiro	2020-01
+7	PED11327	2020-01-01	Loja 4	Santos	São Paulo	Sudeste	200ml	Delivery	5	Pix	2020-01
+8	PED11506	2020-01-01	Loja 4	Santos	São Paulo	Sudeste	300ml	Consumo no local	5	Débito	2020-01
+9	PED16937	2020-01-01	Loja 4	Santos	São Paulo	Sudeste	700ml	Consumo no local	13	Dinheiro	2020-01
+dados.tail(20)
+id_pedido	data	loja	cidade	estado	regiao	tamanho	local_consumo	preco	forma_pagamento	ano_mes
+69980	PED52870	2022-12-31	Loja 1	Fortaleza	Ceará	Nordeste	200ml	Delivery	5	Débito	2022-12
+69981	PED57160	2022-12-31	Loja 6	Florianópolis	Santa Catarina	Sul	300ml	Delivery	11	Crédito	2022-12
+69982	PED58315	2022-12-31	Loja 4	Santos	São Paulo	Sudeste	1000ml	Consumo no local	13	Débito	2022-12
+69983	PED58498	2022-12-31	Loja 6	Florianópolis	Santa Catarina	Sul	200ml	Delivery	13	Crédito	2022-12
+69984	PED58621	2022-12-31	Loja 5	São Paulo	São Paulo	Sudeste	700ml	Consumo no local	13	Débito	2022-12
+69985	PED59268	2022-12-31	Loja 6	Florianópolis	Santa Catarina	Sul	200ml	Delivery	9	Dinheiro	2022-12
+69986	PED59440	2022-12-31	Loja 3	Rio de Janeiro	Rio de Janeiro	Sudeste	500ml	Delivery	9	Crédito	2022-12
+69987	PED59769	2022-12-31	Loja 5	São Paulo	São Paulo	Sudeste	300ml	Delivery	11	Crédito	2022-12
+69988	PED59866	2022-12-31	Loja 5	São Paulo	São Paulo	Sudeste	500ml	Consumo no local	5	Crédito	2022-12
+69989	PED59891	2022-12-31	Loja 1	Fortaleza	Ceará	Nordeste	300ml	Delivery	9	Pix	2022-12
+69990	PED60058	2022-12-31	Loja 2	Niterói	Rio de Janeiro	Sudeste	700ml	Consumo no local	9	Dinheiro	2022-12
+69991	PED60153	2022-12-31	Loja 5	São Paulo	São Paulo	Sudeste	300ml	Delivery	13	Dinheiro	2022-12
+69992	PED65400	2022-12-31	Loja 6	Florianópolis	Santa Catarina	Sul	700ml	Delivery	7	Crédito	2022-12
+69993	PED66232	2022-12-31	Loja 6	Florianópolis	Santa Catarina	Sul	500ml	Delivery	11	Dinheiro	2022-12
+69994	PED66268	2022-12-31	Loja 6	Florianópolis	Santa Catarina	Sul	300ml	Consumo no local	11	Dinheiro	2022-12
+69995	PED67084	2022-12-31	Loja 6	Florianópolis	Santa Catarina	Sul	500ml	Consumo no local	11	Crédito	2022-12
+69996	PED67857	2022-12-31	Loja 3	Rio de Janeiro	Rio de Janeiro	Sudeste	200ml	Consumo no local	7	Pix	2022-12
+69997	PED69171	2022-12-31	Loja 4	Santos	São Paulo	Sudeste	500ml	Consumo no local	5	Dinheiro	2022-12
+69998	PED69229	2022-12-31	Loja 4	Santos	São Paulo	Sudeste	300ml	Consumo no local	9	Pix	2022-12
+69999	PED69356	2022-12-31	Loja 1	Fortaleza	Ceará	Nordeste	300ml	Delivery	9	Pix	2022-12
+dados.shape
+(70000, 11)
+Estatísticas
+dados.describe()
+preco
+count	70000.000000
+mean	8.355200
+std	2.653061
+min	5.000000
+25%	7.000000
+50%	7.000000
+75%	11.000000
+max	13.000000
+Análises
+#total de pedidos por loja
+dados.loja.value_counts()
+Loja 4    13483
+Loja 6    13075
+Loja 1    12344
+Loja 5    12177
+Loja 3    10603
+Loja 2     8318
+Name: loja, dtype: int64
+#total de pedidos por forma de pagamento
+dados.forma_pagamento.value_counts()
+Crédito     26063
+Débito      20427
+Dinheiro    14709
+Pix          8801
+Name: forma_pagamento, dtype: int64
+# total de pedidos por tamanho de copos
+dados.tamanho.value_counts()
+300ml     20475
+200ml     15804
+500ml     13591
+700ml     11158
+1000ml     8972
+Name: tamanho, dtype: int64
+Faturamento
+#faturamento por loja
+dados.groupby("loja").sum()
+preco
+loja	
+Loja 1	103162
+Loja 2	69592
+Loja 3	88357
+Loja 4	112379
+Loja 5	102189
+Loja 6	109185
+# ticket médio por loja
+dados.groupby("loja").mean()
+preco
+loja	
+Loja 1	8.357259
+Loja 2	8.366434
+Loja 3	8.333208
+Loja 4	8.334866
+Loja 5	8.391968
+Loja 6	8.350669
+dados_agrupados_estado_loja = dados.groupby(["estado", "loja"]).sum()
+dados_agrupados_estado_loja.to_excel("faturamento.xlsx")
+Visualização de Dados - Plotly Express
+import plotly_express as px
+grafico = px.histogram(dados, x='loja', y= 'preco', color = 'forma_pagamento', text_auto = True)
+grafico
+grafico.write_html("faturamento_loja.html")
+px.histogram(dados, x='loja', y= 'preco', color = 'forma_pagamento', text_auto = True)
+#listas
+colunas = ["loja", "cidade", "estado", "regiao", "tamanho", "local_consumo", "forma_pagamento"]
+for coluna in colunas:
+    grafico = px.histogram(dados, x= coluna, y= 'preco', color = 'forma_pagamento', text_auto = True)
+    grafico.show()
+    grafico.write_html(f"grafico - {coluna}.html")
